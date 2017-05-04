@@ -109,6 +109,14 @@ start_copying_prebuilt_qcril_db()
 }
 
 baseband=`getprop ro.baseband`
+#
+# Suppress default route installation during RA for IPV6; user space will take
+# care of this
+# exception default ifc
+for file in /proc/sys/net/ipv6/conf/*
+do
+  echo 0 > $file/accept_ra_defrtr
+done
 echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
 
 case "$baseband" in
@@ -286,7 +294,7 @@ if [ ! -f /firmware/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_versio
     rm -rf /data/misc/radio/modem_config
     mkdir /data/misc/radio/modem_config
     chmod 770 /data/misc/radio/modem_config
-    cp -r /firmware/image/modem_pr/mcfg/configs/* /data/misc/radio/modem_config
+    cp -r /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/mbn_ota/* /data/misc/radio/modem_config
     chown -hR radio.radio /data/misc/radio/modem_config
     cp /firmware/verinfo/ver_info.txt /data/misc/radio/ver_info.txt
     chown radio.radio /data/misc/radio/ver_info.txt
