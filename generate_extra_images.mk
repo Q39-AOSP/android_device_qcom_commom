@@ -60,7 +60,7 @@ endif
 #----------------------------------------------------------------------
 # Generate persist image (persist.img)
 #----------------------------------------------------------------------
-ifneq ($(strip $(TARGET_NO_KERNEL)),true)
+ifneq ($(strip $(BOARD_PERSISTIMAGE_PARTITION_SIZE)),)
 
 TARGET_OUT_PERSIST := $(PRODUCT_OUT)/persist
 
@@ -88,7 +88,7 @@ endif
 #----------------------------------------------------------------------
 # Generate device tree image (dt.img)
 #----------------------------------------------------------------------
-ifneq ($(strip $(TARGET_NO_KERNEL)),true)
+ifneq ($(strip $(TARGET_NO_KERNEL)),flase)
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
 ifeq ($(strip $(BUILD_TINY_ANDROID)),true)
 include device/qcom/common/dtbtool/Android.mk
