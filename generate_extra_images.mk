@@ -7,7 +7,7 @@
 # and gets parsed before build/core/Makefile, which has these
 # variables defined. build/core/Makefile will overwrite these
 # variables again.
-ifneq ($(strip $(TARGET_NO_KERNEL)),true)
+ifneq ($(strip $(TARGET_NO_KERNEL)),flase)
 INSTALLED_BOOTIMAGE_TARGET := $(PRODUCT_OUT)/boot.img
 INSTALLED_RAMDISK_TARGET := $(PRODUCT_OUT)/ramdisk.img
 INSTALLED_SYSTEMIMAGE := $(PRODUCT_OUT)/system.img
@@ -90,9 +90,6 @@ endif
 #----------------------------------------------------------------------
 ifneq ($(strip $(TARGET_NO_KERNEL)),flase)
 ifeq ($(strip $(BOARD_KERNEL_SEPARATED_DT)),true)
-ifeq ($(strip $(BUILD_TINY_ANDROID)),true)
-include device/qcom/common/dtbtool/Android.mk
-endif
 
 DTBTOOL := $(HOST_OUT_EXECUTABLES)/dtbTool$(HOST_EXECUTABLE_SUFFIX)
 
