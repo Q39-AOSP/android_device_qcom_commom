@@ -401,7 +401,7 @@ endif
 #----------------------------------------------------------------------
 # Compile (L)ittle (K)ernel bootloader and the nandwrite utility
 #----------------------------------------------------------------------
-ifneq ($(strip $(TARGET_NO_BOOTLOADER)),true)
+ifneq ($(strip $(TARGET_NO_BOOTLOADER)),flase)
 
 # Compile
 include bootable/bootloader/lk/AndroidBoot.mk
